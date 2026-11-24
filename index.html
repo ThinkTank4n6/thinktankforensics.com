@@ -96,6 +96,33 @@ pre{overflow-x:auto;background:var(--bg);border:1px solid var(--line);border-rad
 .note{font-size:14px;border-left:3px solid var(--red);padding:6px 0 6px 14px;color:var(--mute)}
 footer{border-top:1px solid var(--line);font-size:14px;color:var(--mute)}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+.pbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:24px 0 18px}
+.pbar input{font:inherit;font-size:16px;min-height:44px;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);flex:1 1 220px;max-width:340px}
+.pbar input:focus-visible{outline:3px solid var(--red);outline-offset:1px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:inherit;font-size:14px;min-height:36px;padding:6px 14px;border-radius:99px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.chip[aria-pressed=true]{background:var(--red);border-color:var(--red);color:#fff}
+.chip:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.pat{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column}
+.strip{background:linear-gradient(#141226,#1d1838);padding:20px 14px 16px;position:relative}
+.strip::before{content:"";position:absolute;left:10px;right:10px;top:18px;height:2px;background:#3a3460}
+.bulbs{display:flex;justify-content:space-between;position:relative}
+.bulbs i{width:11px;height:11px;border-radius:50%;background:var(--c);box-shadow:0 0 8px 2px color-mix(in srgb,var(--c) 70%,transparent)}
+.pat .pb{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px}
+.pat h4{margin:0;font-size:17px}
+.pat p{margin:0;color:var(--mute);font-size:15px}
+.pat .by{font-size:13px}
+.pat .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.pat .tags span{font-size:12px;padding:2px 9px;border-radius:99px;background:var(--panel);color:var(--mute)}
+.pat .kind{font-size:12px;font-weight:600;color:var(--red)}
+.pmsg{color:var(--mute);margin:0}
+.share{margin-top:28px;border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;background:var(--panel)}
+.share ol{margin:8px 0 0;padding-left:20px;color:var(--mute)}.share li{margin:4px 0}
+.share .btns{flex-direction:column}
+@media(max-width:760px){.share{grid-template-columns:minmax(0,1fr)}.share .btns{flex-direction:row}}
+@media(prefers-reduced-motion:no-preference){.bulbs i{animation:tw 2.4s ease-in-out infinite;animation-delay:calc(var(--n) * -0.17s)}@keyframes tw{50%{opacity:.55}}}
 @media(max-width:860px){.items,.steps,.about .wrap{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:700px){.hero .wrap{grid-template-columns:minmax(0,1fr)}nav{margin-left:0;width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.grid i{transition:none}}
@@ -110,6 +137,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </a>
   <nav aria-label="Main">
     <a href="#projects">Projects</a>
+    <a href="#patterns">Patterns</a>
     <a href="#verify">Verify a download</a>
     <a href="#about">About</a>
     <a href="https://github.com/ThinkTank4n6">GitHub</a>
@@ -134,6 +162,31 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <h2>Projects</h2>
   <p class="lede" style="margin:0">The latest release of each project is pulled from GitHub when the page loads.</p>
   <div class="items" id="items"></div>
+</div></section>
+
+
+<section class="band" id="patterns"><div class="wrap">
+  <h2>EaveLuxOS community patterns</h2>
+  <p class="lede" style="margin:0">Patterns shared by EaveLuxOS owners. Find one you like, then open <b>Patterns › Community</b> in EaveLuxOS to try it on your lights or add it to your own.</p>
+  <div class="pbar">
+    <input id="pq" type="search" placeholder="Search patterns" aria-label="Search patterns" autocomplete="off">
+    <div class="chips" id="ptags" role="group" aria-label="Filter by tag"></div>
+  </div>
+  <div class="pgrid" id="pgrid"><p class="pmsg">Loading the pattern library…</p></div>
+  <div class="share">
+    <div>
+      <h3>Share your pattern</h3>
+      <ol>
+        <li>In EaveLuxOS, open your pattern in <b>Create</b> and note its colors, bulb counts, animation, speed and brightness.</li>
+        <li>Add a small <code>.json</code> file for it to the <code>patterns</code> folder of the library on GitHub. The library's README shows the exact format.</li>
+        <li>Open a pull request. An automatic check runs on it, and once it's reviewed and merged, your pattern appears here and in every copy of EaveLuxOS.</li>
+      </ol>
+    </div>
+    <div class="btns">
+      <a class="btn solid" href="https://github.com/ThinkTank4n6/eaveluxos-patterns/new/main/patterns">Propose a pattern</a>
+      <a class="btn" href="https://github.com/ThinkTank4n6/eaveluxos-patterns#share-a-pattern">How to format it</a>
+    </div>
+  </div>
 </div></section>
 
 <section class="band verify" id="verify"><div class="wrap">
@@ -177,7 +230,7 @@ const projects = [
   { repo: "eaveluxos", name: "EaveLuxOS", short: "EaveLuxOS", kind: "Home",
     blurb: "The intelligent lighting control platform for Trimlight Edge permanent lights. Runs on an always-on PC at home and replaces the stock app.",
     feats: ["True sunrise and sunset scheduling", "Correct daylight saving time handling", "Uses the official Trimlight API", "Self-hosted: your schedule stays on your network"],
-    art: "eaveluxos" }
+    art: "eaveluxos", extra: ["#patterns", "Community patterns"] }
 ];
 
 
@@ -197,7 +250,7 @@ document.getElementById("items").innerHTML = projects.map(p => `
       <div class="btns">
         <a class="btn solid" data-dl href="${gh(p)}/releases/latest">Downloads on GitHub</a>
         <a class="btn" href="${gh(p)}">Source &amp; docs</a>
-        <a class="btn" href="${gh(p)}/releases">All releases</a>
+        <a class="btn" href="${gh(p)}/releases">All releases</a>${p.extra ? `<a class="btn" href="${p.extra[0]}">${esc(p.extra[1])}</a>` : ""}
       </div>
     </div>
   </article>`).join("");
@@ -243,6 +296,49 @@ projects.forEach(async p => {
     card.querySelector("[data-dl]").remove();
   } catch (e) { /* offline or rate-limited: keep the fallback link */ }
 });
+
+
+// Community patterns: read the same index.json EaveLuxOS reads, live from GitHub.
+const PAT_URL = "https://raw.githubusercontent.com/ThinkTank4n6/eaveluxos-patterns/main/index.json";
+const pgrid = document.getElementById("pgrid"), pq = document.getElementById("pq"), ptags = document.getElementById("ptags");
+let pats = [], tagOn = "";
+const kindName = { show: "Studio show", automation: "Automation" };
+const titleCase = t => t.charAt(0).toUpperCase() + t.slice(1);
+const drawPats = () => {
+  const q = pq.value.trim().toLowerCase();
+  const list = pats.filter(x => (!tagOn || x.tags.includes(tagOn)) &&
+    (!q || [x.name, x.description, x.author, ...x.tags].join(" ").toLowerCase().includes(q)));
+  pgrid.innerHTML = list.length ? list.map(x => {
+    const cols = x.colors.length ? x.colors : ["#FFA757"];
+    const bulbs = Array.from({ length: 16 }, (_, i) => `<i style="--c:${esc(cols[i % cols.length])};--n:${i}"></i>`).join("");
+    return `<article class="pat"><div class="strip" aria-hidden="true"><div class="bulbs">${bulbs}</div></div>
+      <div class="pb">${kindName[x.kind] ? `<span class="kind">${kindName[x.kind]}</span>` : ""}<h4>${esc(x.name)}</h4>
+      ${x.description ? `<p>${esc(x.description)}</p>` : ""}${x.author ? `<p class="by">by ${esc(x.author)}</p>` : ""}
+      ${x.tags.length ? `<div class="tags">${x.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>` : ""}</div></article>`;
+  }).join("") : `<p class="pmsg">No patterns match. Try another search, or share one of your own below.</p>`;
+};
+const drawTags = () => {
+  const tags = [...new Set(pats.flatMap(x => x.tags))].sort();
+  ptags.innerHTML = [["", "All"], ...tags.map(t => [t, titleCase(t)])].map(([t, l]) =>
+    `<button class="chip" type="button" data-t="${esc(t)}" aria-pressed="${t === tagOn}">${esc(l)}</button>`).join("");
+};
+ptags.addEventListener("click", e => { const b = e.target.closest(".chip"); if (!b) return; tagOn = b.dataset.t; drawTags(); drawPats(); });
+pq.addEventListener("input", drawPats);
+(async () => {
+  try {
+    const r = await fetch(PAT_URL, { cache: "no-cache" });
+    if (!r.ok) throw 0;
+    const j = await r.json();
+    pats = (j.patterns || []).filter(x => x && x.id).map(x => ({
+      id: String(x.id), kind: x.kind || "pattern", name: String(x.name || x.id), author: String(x.author || ""),
+      description: String(x.description || ""), tags: (x.tags || []).map(t => String(t).toLowerCase()).slice(0, 8),
+      colors: (x.colors || []).filter(c => /^#[0-9a-f]{6}$/i.test(c)).slice(0, 8)
+    })).sort((a, b) => a.name.localeCompare(b.name));
+    drawTags(); drawPats();
+  } catch (e) {
+    pgrid.innerHTML = `<p class="pmsg">The pattern library couldn't be loaded right now. You can browse it on <a href="https://github.com/ThinkTank4n6/eaveluxos-patterns">GitHub</a>.</p>`;
+  }
+})();
 
 document.getElementById("yr").textContent = new Date().getFullYear();
 }
