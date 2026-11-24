@@ -5,7 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ThinkTank Forensics</title>
 <meta name="description" content="Free, open-source tools by Christopher A. Tankelewicz (ThinkTank4n6): Forensic Media Extractor and EaveLuxOS.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thinktankforensics.com/">
+<meta property="og:title" content="ThinkTank Forensics">
+<meta property="og:description" content="Free, open-source tools by Christopher A. Tankelewicz (ThinkTank4n6): Forensic Media Extractor and EaveLuxOS.">
+<meta property="og:image" content="https://thinktankforensics.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0d0f13">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -13,13 +23,13 @@
 /* VOICE: clinical, exact, quietly confident — a lab bench, not a billboard
    IDEA: an evidence bag with its chain-of-custody label; each project is an item
    PICTURE: a disk-sector map in hex, carved files lit up in evidence red
-   COLOUR and TYPE: white bag, ink, evidence red #c8102e; IBM Plex Sans + Plex Mono for data only
+   COLOUR and TYPE: white bag, ink, badge blue #1557d6 from the logo; IBM Plex Sans + Plex Mono for data only
    LAYOUT: hero with sector map, two project items, how-to-verify band, footer */
 :root{color-scheme:light dark;
   --bg:light-dark(#ffffff,#101113);--panel:light-dark(#f3f4f6,#1a1c1f);
   --ink:light-dark(#141518,#eceef1);--mute:light-dark(#5b6068,#a2a8b1);
-  --line:light-dark(#d9dce1,#2c2f34);--red:light-dark(#c8102e,#ff4d5e);
-  --cell:light-dark(#e6e8ec,#23262a);--hit:light-dark(#c8102e,#ff4d5e)}
+  --line:light-dark(#d9dce1,#2c2f34);--red:light-dark(#1557d6,#3d8bff);
+  --cell:light-dark(#e6e8ec,#23262a);--hit:light-dark(#1557d6,#3d8bff)}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
 html{scroll-padding-top:72px;scroll-behavior:smooth}
@@ -30,7 +40,7 @@ a{color:var(--red)}
 header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;gap:16px;padding:12px max(5vw,16px);flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--ink);text-decoration:none;font-size:17px}
-.brand svg{width:30px;height:30px}
+.brand img{width:34px;height:34px;border-radius:7px}
 nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
 nav a{color:var(--ink);text-decoration:none;padding:10px 12px;border-radius:6px;font-size:15px}
 nav a:hover,nav a:focus-visible{background:var(--panel)}
@@ -42,7 +52,9 @@ h3{font-size:20px;margin:0 0 6px}
 .btns{display:flex;gap:10px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:6px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--ink);color:var(--ink);background:transparent}
 .btn.solid{background:var(--red);border-color:var(--red);color:#fff}
+:root{--red-ink:#fff}
 .btn:hover{filter:brightness(1.08)}.btn:focus-visible,nav a:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.logo{margin:0;border-radius:12px;overflow:hidden;box-shadow:0 18px 40px -18px rgba(0,0,0,.55);background:#0d0f13}.logo img{display:block;width:100%;height:auto}
 .map{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;font:12px/1 "IBM Plex Mono",monospace;color:var(--mute)}
 .map .hd{display:flex;justify-content:space-between;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 .grid{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:3px}
@@ -82,7 +94,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <header class="top"><div class="wrap">
   <a class="brand" href="#top" aria-label="ThinkTank Forensics home">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="6" fill="#c8102e"/><path d="M9 10h14M16 10v13" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="21" r="3.2" fill="none" stroke="#fff" stroke-width="2"/></svg>
+    <img src="emblem.png" alt="" width="34" height="34">
     ThinkTank Forensics
   </a>
   <nav aria-label="Main">
@@ -103,11 +115,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn" href="https://github.com/ThinkTank4n6">View source on GitHub</a>
     </div>
   </div>
-  <div class="map" aria-label="Illustration: a disk sector map with recovered media files highlighted">
-    <div class="hd"><span>sector map · image.E01</span><span id="ct">carved: 0</span></div>
-    <div class="grid" id="grid"></div>
-    <div class="legend"><span style="--c:var(--hit)">video</span><span style="--c:color-mix(in srgb,var(--hit) 55%,var(--cell))">image</span><span style="--c:var(--cell)">unallocated</span></div>
-  </div>
+  <figure class="logo"><img src="logo.jpg" alt="ThinkTank Forensics logo: a circuit-board head profile with a magnifying glass over a hard drive, phone and laptop, above the name ThinkTank Forensics and the handle ThinkTank4n6" width="1200" height="800"></figure>
 </div></section>
 
 <section class="band" id="projects"><div class="wrap">
@@ -202,18 +210,6 @@ projects.forEach(async p => {
     if (asset) card.querySelector("[data-dl]").href = asset.browser_download_url;
   } catch (e) { /* offline or rate-limited: keep the fallback link */ }
 });
-
-// Hero: sector map that "carves" files in a loop
-const grid = document.getElementById("grid"), ct = document.getElementById("ct");
-const N = 16 * 9;
-grid.innerHTML = "<i></i>".repeat(N);
-const cells = [...grid.children];
-const runs = [[5,4,"on"],[19,2,"img"],[34,6,"img"],[51,3,"on"],[70,5,"img"],[88,2,"on"],[101,7,"on"],[120,3,"img"],[133,4,"img"]];
-const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-let k = 0;
-const paint = upto => { let n = 0; runs.forEach(([s,l,c], i) => { for (let j = 0; j < l; j++) cells[s+j].className = i < upto ? c : ""; if (i < upto) n++; }); ct.textContent = "carved: " + n; };
-if (still) paint(runs.length);
-else setInterval(() => { k = (k + 1) % (runs.length + 3); paint(Math.min(k, runs.length)); }, 700);
 
 document.getElementById("yr").textContent = new Date().getFullYear();
 }
