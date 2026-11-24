@@ -75,6 +75,10 @@ ul.feat{margin:0;padding-left:18px}ul.feat li{margin:4px 0}
 .rel{font-size:14px;color:var(--mute);min-height:1.6em}
 .rel code{font-family:"IBM Plex Mono",monospace;color:var(--ink)}
 .body .btns{margin-top:auto}
+.files{margin-top:8px}.files summary{cursor:pointer;color:var(--red);font-weight:600;min-height:32px;display:flex;align-items:center}
+.files ul{list-style:none;margin:6px 0 0;padding:0;border:1px solid var(--line);border-radius:8px}
+.files li{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 12px;border-top:1px solid var(--line)}
+.files li:first-child{border-top:0}.files li a{overflow-wrap:anywhere}.files li span{white-space:nowrap;color:var(--mute)}
 .verify{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:20px}
 .step{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:18px}
@@ -198,16 +202,36 @@ document.getElementById("items").innerHTML = projects.map(p => `
   </article>`).join("");
 
 // Pull the newest release from the GitHub API; the links above still work if this fails.
+const plat = n => { n = n.toLowerCase();
+  if (/sha256|checksum|\.sha/.test(n)) return "Checksums";
+  if (/win|\.exe$|\.msi$/.test(n)) return "Windows";
+  if (/mac|darwin|osx|\.dmg$|\.pkg$/.test(n)) return "macOS";
+  if (/linux|\.appimage$|\.deb$|\.rpm$|\.tar\.gz$/.test(n)) return "Linux";
+  if (/arm|aarch64|raspberry|rpi/.test(n)) return "Linux (ARM)";
+  return "Other"; };
+const ua = navigator.userAgent;
+const myOS = /iPhone|iPad|Android/.test(ua) ? "" : /Windows/.test(ua) ? "Windows" : /Mac/.test(ua) ? "macOS" : /Linux|X11/.test(ua) ? "Linux" : "";
+const mb = b => b >= 1048576 ? (b/1048576).toFixed(1) + " MB" : Math.max(1, Math.round(b/1024)) + " KB";
 projects.forEach(async p => {
   const card = document.getElementById("p-" + p.repo);
   try {
     const r = await fetch(`https://api.github.com/repos/${OWNER}/${p.repo}/releases/latest`, { headers: { Accept: "application/vnd.github+json" } });
     if (!r.ok) return;
     const j = await r.json();
+    const assets = j.assets || [];
     const date = new Date(j.published_at).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
-    const asset = (j.assets || []).find(a => /\.(zip|exe|msi|7z)$/i.test(a.name)) || (j.assets || [])[0];
-    card.querySelector("[data-rel]").innerHTML = `Latest release: <code>${esc(j.tag_name)}</code> · ${esc(date)}${asset ? ` · ${esc(asset.name)} (${(asset.size/1048576).toFixed(1)} MB)` : ""}`;
-    if (asset) card.querySelector("[data-dl]").href = asset.browser_download_url;
+    const pkgs = assets.filter(a => plat(a.name) !== "Checksums");
+    const pick = pkgs.find(a => plat(a.name) === myOS) || pkgs.find(a => /\.(zip|exe|msi)$/i.test(a.name)) || pkgs[0];
+    const order = ["Windows","macOS","Linux","Linux (ARM)","Other","Checksums"];
+    const rows = [...assets].sort((a,b) => order.indexOf(plat(a.name)) - order.indexOf(plat(b.name)) || a.name.localeCompare(b.name))
+      .map(a => `<li><a href="${esc(a.browser_download_url)}">${esc(a.name)}</a><span>${esc(plat(a.name))} · ${mb(a.size)}</span></li>`).join("");
+    card.querySelector("[data-rel]").innerHTML = `Latest release: <code>${esc(j.tag_name)}</code> · ${esc(date)}` +
+      (assets.length ? `<details class="files"><summary>All downloads (${assets.length} files)</summary><ul>${rows}</ul></details>` : "");
+    if (pick) {
+      const dl = card.querySelector("[data-dl]");
+      dl.href = pick.browser_download_url;
+      if (myOS && plat(pick.name) === myOS) dl.textContent = `Download for ${myOS}`;
+    }
   } catch (e) { /* offline or rate-limited: keep the fallback link */ }
 });
 
