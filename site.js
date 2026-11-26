@@ -38,12 +38,12 @@ document.querySelectorAll(".dd").forEach(dd => {
     `<a class="all" href="${pages[kind]}">All ${kind} projects →</a>`;
   const set = open => { btn.setAttribute("aria-expanded", open); m.hidden = !open; };
   btn.addEventListener("click", e => { e.stopPropagation(); const o = btn.getAttribute("aria-expanded") !== "true";
-    document.querySelectorAll(".dd .ddb[aria-expanded=true]").forEach(b => { b.setAttribute("aria-expanded", false); b.nextElementSibling.hidden = true; }); set(o); if (o) m.querySelector("a").focus({ preventScroll: true }); });
+    document.querySelectorAll(".dd .ddb[aria-expanded=true]").forEach(b => { b.setAttribute("aria-expanded", false); b.nextElementSibling.hidden = true; }); set(o); if (o && e.detail === 0) m.querySelector("a").focus({ preventScroll: true }); });
   m.addEventListener("click", () => set(false));
   dd.addEventListener("keydown", e => { if (e.key === "Escape") { set(false); btn.focus(); } });
-  dd.addEventListener("focusout", e => { if (!dd.contains(e.relatedTarget)) set(false); });
 });
-document.addEventListener("click", () => document.querySelectorAll(".dd").forEach(dd => { dd.querySelector(".ddb").setAttribute("aria-expanded", false); dd.querySelector(".ddm").hidden = true; }));
+document.addEventListener("focusin", e => document.querySelectorAll(".dd").forEach(dd => { if (!dd.contains(e.target)) { dd.querySelector(".ddb").setAttribute("aria-expanded", false); dd.querySelector(".ddm").hidden = true; } }));
+document.addEventListener("pointerdown", e => document.querySelectorAll(".dd").forEach(dd => { if (!dd.contains(e.target)) { dd.querySelector(".ddb").setAttribute("aria-expanded", false); dd.querySelector(".ddm").hidden = true; } }));
 document.querySelectorAll("[data-list]").forEach(el => {
   el.innerHTML = entries(el.dataset.list).map(e => `<a class="row" href="${e.href}"><img src="img/${e.icon}-icon.svg" alt="" width="56" height="56"><span class="rt"><b>${esc(e.name)}</b>${e.badge ? `<span class="badge">${esc(e.badge)}</span>` : ""}<small>${esc(e.tagline || "")}</small></span><span class="arr" aria-hidden="true">›</span></a>`).join("");
 });
