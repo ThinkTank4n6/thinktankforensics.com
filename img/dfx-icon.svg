@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#061214"/><stop offset="1" stop-color="#0b2d30"/></linearGradient>
+<radialGradient id="halo" cx=".7" cy=".4" r=".5"><stop offset="0" stop-color="#2fe0c8" stop-opacity=".22"/><stop offset="1" stop-color="#2fe0c8" stop-opacity="0"/></radialGradient>
+<linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#13b5a2"/><stop offset="1" stop-color="#075a55"/></linearGradient>
+<linearGradient id="box" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#28363b"/><stop offset="1" stop-color="#151e22"/></linearGradient>
+<linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8eef2"/><stop offset=".5" stop-color="#9aa8b1"/><stop offset="1" stop-color="#d4dde3"/></linearGradient>
+<filter id="g" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="4"/></filter>
+</defs>
+<rect width="128" height="128" rx="30" fill="url(#tile)"/><rect x="1" y="1" width="126" height="126" rx="29" fill="none" stroke="#7ff5e3" stroke-opacity=".45" stroke-width="2"/>
+<g transform="rotate(14 64 52)"><rect x="22" y="36" width="70" height="32" rx="9" fill="none" stroke="#fff" stroke-width="7"/><circle cx="34" cy="52" r="6" fill="#fff"/></g>
+<path d="M70 72 L70 82 L48 82" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<rect x="24" y="88" width="80" height="22" rx="5" fill="#053f3b" stroke="#fff" stroke-width="5"/><path d="M58 93 L72 99 L58 105Z" fill="#fff"/>
+</svg>
