@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ThinkTank Forensics</title>
-<meta name="description" content="Free, open-source tools by Christopher A. Tankelewicz (ThinkTank4n6): Forensic Media Extractor and EaveLuxOS.">
+<meta name="description" content="Free, open-source tools by Christopher A. Tankelewicz (ThinkTank4n6): DFIR tools for examiners and projects for the home.">
 <link rel="icon" href="favicon-32.png" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thinktankforensics.com/">
 <meta property="og:title" content="ThinkTank Forensics">
-<meta property="og:description" content="Free, open-source tools by Christopher A. Tankelewicz (ThinkTank4n6): Forensic Media Extractor and EaveLuxOS.">
+<meta property="og:description" content="Free, open-source tools by Christopher A. Tankelewicz (ThinkTank4n6): DFIR tools for examiners and projects for the home.">
 <meta property="og:image" content="https://thinktankforensics.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -19,138 +19,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-/* VOICE: clinical, exact, quietly confident — a lab bench, not a billboard
-   IDEA: an evidence bag with its chain-of-custody label; each project is an item
-   PICTURE: a disk-sector map in hex, carved files lit up in evidence red
-   COLOUR and TYPE: white bag, ink, badge blue #1557d6 from the logo; IBM Plex Sans + Plex Mono for data only
-   LAYOUT: hero with sector map, two project items, how-to-verify band, footer */
-:root{color-scheme:light dark;
-  --bg:light-dark(#ffffff,#101113);--panel:light-dark(#f3f4f6,#1a1c1f);
-  --ink:light-dark(#141518,#eceef1);--mute:light-dark(#5b6068,#a2a8b1);
-  --line:light-dark(#d9dce1,#2c2f34);--red:light-dark(#1557d6,#3d8bff);
-  --cell:light-dark(#e6e8ec,#23262a);--hit:light-dark(#1557d6,#3d8bff)}
-:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
-*{box-sizing:border-box;min-width:0}
-html{scroll-padding-top:96px;scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,sans-serif;overflow-x:clip}
-a{color:var(--red)}
-.wrap{max-width:1240px;margin:0 auto}
-.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
-header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:16px;padding:16px max(5vw,16px);flex-wrap:wrap;min-height:84px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--ink);text-decoration:none;font-size:19px}
-.brand img{width:42px;height:42px;border-radius:8px}
-nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
-nav a{color:var(--ink);text-decoration:none;padding:10px 12px;border-radius:6px;font-size:15px}
-nav a:hover,nav a:focus-visible{background:var(--panel)}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:center}
-h1{font-size:clamp(34px,5vw,52px);line-height:1.05;margin:0 0 18px;text-wrap:balance;font-weight:600;letter-spacing:-.01em}
-h2{font-size:clamp(26px,3.4vw,34px);line-height:1.1;margin:0 0 12px;text-wrap:balance;font-weight:600}
-h3{font-size:20px;margin:0 0 6px}
-.byline{margin:-6px 0 16px;font-size:16px;font-weight:600;color:var(--ink)}.byline span{color:var(--red)}
-.lede{font-size:18px;color:var(--mute);max-width:34em;margin:0 0 26px}
-.btns{display:flex;gap:10px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:6px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--ink);color:var(--ink);background:transparent}
-.btn.solid{background:var(--red);border-color:var(--red);color:#fff}
-:root{--red-ink:#fff}
-.btn:hover{filter:brightness(1.08)}.btn:focus-visible,nav a:focus-visible{outline:3px solid var(--red);outline-offset:2px}
-.logo{margin:0;border-radius:12px;overflow:hidden;box-shadow:0 18px 40px -18px rgba(0,0,0,.55);background:#0d0f13}.logo img{display:block;width:100%;height:auto}
-.map{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;font:12px/1 "IBM Plex Mono",monospace;color:var(--mute)}
-.map .hd{display:flex;justify-content:space-between;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.grid{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:3px}
-.grid i{aspect-ratio:1;border-radius:2px;background:var(--cell);transition:background .5s}
-.grid i.on{background:var(--hit)}
-.grid i.img{background:color-mix(in srgb,var(--hit) 55%,var(--cell))}
-.legend{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap}
-.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--c)}
-.items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:28px}
-.item{border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;background:var(--bg)}
-.tag{display:flex;justify-content:space-between;gap:12px;padding:12px 20px;background:var(--panel);border-bottom:1px dashed var(--line);font:13px "IBM Plex Mono",monospace;color:var(--mute);flex-wrap:wrap}
-.tag b{color:var(--red);font-weight:600}
-.body{padding:22px 20px;display:flex;flex-direction:column;gap:14px;flex:1}
-.body p{margin:0;color:var(--mute)}
-.art{border-radius:10px;overflow:hidden;background:#0b0f1a;box-shadow:0 10px 26px -14px rgba(0,0,0,.6)}
-.art img{display:block;width:100%;height:auto}
-ul.feat{margin:0;padding-left:18px}ul.feat li{margin:4px 0}
-.rel{font-size:14px;color:var(--mute);min-height:1.6em}
-.rel code{font-family:"IBM Plex Mono",monospace;color:var(--ink)}
-.body .btns{margin-top:auto}
-.dl{display:grid;gap:12px}
-.os{border:1px solid var(--line);border-radius:10px;padding:12px}
-.os.mine{border-color:var(--red);box-shadow:0 0 0 1px var(--red) inset}
-.os h4{margin:0 0 8px;font-size:15px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.os h4 em{font-style:normal;font-size:12px;font-weight:600;color:#fff;background:var(--red);border-radius:99px;padding:2px 9px}
-.file{display:flex;flex-direction:column;gap:2px;min-height:44px;justify-content:center;padding:8px 12px;margin-top:6px;border-radius:7px;background:var(--panel);text-decoration:none;color:var(--ink)}
-.file:hover,.file:focus-visible{outline:2px solid var(--red);outline-offset:0}
-.file span{font-weight:600;color:var(--red)}
-.file small{color:var(--mute);font-size:13px;overflow-wrap:anywhere}
-.sums{font-size:14px;margin:0}
-.verify{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:20px}
-.step{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:18px}
-.step p{margin:6px 0 0;color:var(--mute);font-size:15px}
-pre{overflow-x:auto;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:14px;font:13px/1.5 "IBM Plex Mono",monospace;margin:20px 0 0}
-.about .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
-.about p{color:var(--mute);margin:0 0 14px}
-.coffee{margin-top:18px;border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--panel);display:flex;flex-direction:column;gap:12px;align-items:flex-start}
-.coffee p{margin:0;color:var(--ink)}.coffee small{color:var(--mute);font-size:13px}
-.btn svg,nav a svg{flex:none}.lead{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.pill{display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:6px 14px 6px 11px;border-radius:99px;border:1.5px solid var(--red);color:var(--red);font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}
-.pill svg{width:18px;height:18px}
-.tip{display:flex;flex-direction:column;align-items:center;gap:4px}.tip small{font-size:12px;color:var(--mute);white-space:nowrap}
-.pill:hover{background:var(--red);color:#fff}.pill:focus-visible{outline:3px solid var(--red);outline-offset:2px}
-@media(max-width:420px){.pill span,.tip small{display:none}.pill{padding:6px 9px}}
-.note{font-size:14px;border-left:3px solid var(--red);padding:6px 0 6px 14px;color:var(--mute)}
-footer{border-top:1px solid var(--line);font-size:14px;color:var(--mute)}
-footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-.pbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:24px 0 18px}
-.pbar input{font:inherit;font-size:16px;min-height:44px;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);flex:1 1 220px;max-width:340px}
-.pbar input:focus-visible{outline:3px solid var(--red);outline-offset:1px}
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{font:inherit;font-size:14px;min-height:36px;padding:6px 14px;border-radius:99px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
-.chip[aria-pressed=true]{background:var(--red);border-color:var(--red);color:#fff}
-.chip:focus-visible{outline:3px solid var(--red);outline-offset:2px}
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
-.pat{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column}
-.strip{background:linear-gradient(#141226,#1d1838);padding:20px 14px 16px;position:relative}
-.strip::before{content:"";position:absolute;left:10px;right:10px;top:18px;height:2px;background:#3a3460}
-.bulbs{display:flex;justify-content:space-between;position:relative}
-.bulbs i{width:11px;height:11px;border-radius:50%;background:var(--c);box-shadow:0 0 8px 2px color-mix(in srgb,var(--c) 70%,transparent)}
-.pat .pb{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px}
-.pat h4{margin:0;font-size:17px}
-.pat p{margin:0;color:var(--mute);font-size:15px}
-.pat .by{font-size:13px}
-.pat .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
-.pat .tags span{font-size:12px;padding:2px 9px;border-radius:99px;background:var(--panel);color:var(--mute)}
-.pat .kind{font-size:12px;font-weight:600;color:var(--red)}
-.pmsg{color:var(--mute);margin:0}
-.share{margin-top:28px;border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;background:var(--panel)}
-.share ol{margin:8px 0 0;padding-left:20px;color:var(--mute)}.share li{margin:4px 0}
-.share .btns{flex-direction:column}
-@media(max-width:760px){.share{grid-template-columns:minmax(0,1fr)}.share .btns{flex-direction:row}}
-@media(prefers-reduced-motion:no-preference){.bulbs i{animation:tw 2.4s ease-in-out infinite;animation-delay:calc(var(--n) * -0.17s)}@keyframes tw{50%{opacity:.55}}}
-@media(max-width:860px){.items,.steps,.about .wrap{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:700px){.hero .wrap{grid-template-columns:minmax(0,1fr)}nav{margin-left:0;width:100%}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.grid i{transition:none}}
-</style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 
 <header class="top"><div class="wrap">
   <div class="lead">
-  <a class="brand" href="#top" aria-label="ThinkTank Forensics home">
+  <a class="brand" href="./" aria-label="ThinkTank Forensics home">
     <img src="emblem.png" alt="" width="42" height="42">
     ThinkTank Forensics
   </a>
   <div class="tip"><a class="pill" href="https://venmo.com/u/Christopher-Tankelewicz" rel="noopener" aria-label="Buy me a coffee on Venmo"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3c0 1.5 1 1.5 1 3M12 3c0 1.5 1 1.5 1 3"/></svg><span>Buy me a coffee</span></a><small>Optional · never unlocks features or support</small></div>
   </div>
   <nav aria-label="Main">
-    <a href="#projects">Projects</a>
-    <a href="#patterns">Patterns</a>
-    <a href="#verify">Verify a download</a>
-    <a href="#about">About</a>
+    <a href="dfir.html">DFIR</a>
+    <a href="home.html">Home</a>
+    <a href="home.html#patterns">Patterns</a>
+    <a href="./#verify">Verify a download</a>
+    <a href="./#about">About</a>
     <a href="https://github.com/ThinkTank4n6">GitHub</a>
   </nav>
 </div></header>
@@ -162,7 +48,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <p class="byline">by Christopher A. Tankelewicz <span>(ThinkTank4n6)</span></p>
     <p class="lede">Forensic software shaped by daily casework, plus a home project or two. Free, open-source and verifiable down to the hash.</p>
     <div class="btns">
-      <a class="btn solid" href="#projects">Browse downloads</a>
+      <a class="btn solid" href="#projects">Browse projects</a>
       <a class="btn" href="https://github.com/ThinkTank4n6">View source on GitHub</a>
     </div>
   </div>
@@ -171,32 +57,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <section class="band" id="projects"><div class="wrap">
   <h2>Projects</h2>
-  <p class="lede" style="margin:0">The latest release of each project is pulled from GitHub when the page loads.</p>
-  <div class="items" id="items"></div>
-</div></section>
-
-
-<section class="band" id="patterns"><div class="wrap">
-  <h2>EaveLuxOS community patterns</h2>
-  <p class="lede" style="margin:0">Patterns shared by EaveLuxOS owners. Find one you like, then open <b>Patterns › Community</b> in EaveLuxOS to try it on your lights or add it to your own.</p>
-  <div class="pbar">
-    <input id="pq" type="search" placeholder="Search patterns" aria-label="Search patterns" autocomplete="off">
-    <div class="chips" id="ptags" role="group" aria-label="Filter by tag"></div>
-  </div>
-  <div class="pgrid" id="pgrid"><p class="pmsg">Loading the pattern library…</p></div>
-  <div class="share">
-    <div>
-      <h3>Share your pattern</h3>
-      <ol>
-        <li>In EaveLuxOS, open your pattern in <b>Create</b> and note its colors, bulb counts, animation, speed and brightness.</li>
-        <li>Add a small <code>.json</code> file for it to the <code>patterns</code> folder of the library on GitHub. The library's README shows the exact format.</li>
-        <li>Open a pull request. An automatic check runs on it, and once it's reviewed and merged, your pattern appears here and in every copy of EaveLuxOS.</li>
-      </ol>
-    </div>
-    <div class="btns">
-      <a class="btn solid" href="https://github.com/ThinkTank4n6/eaveluxos-patterns/new/main/patterns">Propose a pattern</a>
-      <a class="btn" href="https://github.com/ThinkTank4n6/eaveluxos-patterns#share-a-pattern">How to format it</a>
-    </div>
+  <p class="lede" style="margin:0">Two collections: tools for the forensic lab, and projects for around the house.</p>
+  <div class="cats">
+    <a class="cat" href="dfir.html">
+      <div class="art catart"><img src="img/fme-banner.svg" alt="" width="800" height="340"><img src="img/dfx-banner.svg" alt="" width="800" height="340"></div>
+      <div class="cb"><h3>DFIR</h3><p>Digital forensics and incident response tools for examiners: recovering, carving and grading media from evidence.</p>
+      <ul><li>Forensic Media Extractor</li><li>DVR Forensic Extractor</li></ul><span class="go">See DFIR projects →</span></div>
+    </a>
+    <a class="cat" href="home.html">
+      <div class="art"><img src="img/eaveluxos-banner.svg" alt="" width="800" height="340"></div>
+      <div class="cb"><h3>Home</h3><p>Projects for around the house, starting with smarter control of permanent holiday and architectural lights.</p>
+      <ul><li>EaveLuxOS</li><li>Community patterns</li></ul><span class="go">See Home projects →</span></div>
+    </a>
   </div>
 </div></section>
 
@@ -204,7 +76,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <h2>Verify what you downloaded</h2>
   <p class="lede" style="margin:0">Compare your file's SHA-256 to the hash listed on the GitHub release page before you run it.</p>
   <div class="steps">
-    <div class="step"><h3>1. Download</h3><p>Use the button above, or pick an asset from the release page on GitHub.</p></div>
+    <div class="step"><h3>1. Download</h3><p>Use the download buttons on a project, or pick an asset from its release page on GitHub.</p></div>
     <div class="step"><h3>2. Hash it</h3><p>Windows: run <code>certutil</code> in Command Prompt. macOS or Linux: run <code>shasum -a 256</code>.</p></div>
     <div class="step"><h3>3. Compare</h3><p>The value must match the release notes exactly. If it doesn't, don't run it, and open an issue.</p></div>
   </div>
@@ -235,129 +107,6 @@ shasum -a 256 FME-v2026.11.271.zip</pre>
   <span><a href="https://venmo.com/u/Christopher-Tankelewicz" rel="noopener">Buy me a coffee</a> · Hosted on GitHub Pages · <a href="https://github.com/ThinkTank4n6">github.com/ThinkTank4n6</a></span>
 </div></footer>
 
-<script>
-{
-const OWNER = "ThinkTank4n6";
-const projects = [
-  { repo: "Forensic-Media-Extractor", name: "Forensic Media Extractor", short: "FME", kind: "DFIR",
-    blurb: "Extracts every known image and video file from forensic images, with a shared hash store so your unit's known files are flagged across machines.",
-    feats: ["E01, raw and dd image formats", "FAT, FAT32, exFAT, NTFS, HFS+ and APFS", "Shared hash store server for the whole lab", "Python 3.11+, runs on Windows workstations"],
-    art: "fme" },
-  { repo: "eaveluxos", name: "EaveLuxOS", short: "EaveLuxOS", kind: "Home",
-    blurb: "The intelligent lighting control platform for Trimlight Edge permanent lights. Runs on an always-on PC at home and replaces the stock app.",
-    feats: ["True sunrise and sunset scheduling", "Correct daylight saving time handling", "Uses the official Trimlight API", "Self-hosted: your schedule stays on your network"],
-    art: "eaveluxos", extra: ["#patterns", "Community patterns"] }
-];
-
-
-const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
-const gh = p => `https://github.com/${OWNER}/${p.repo}`;
-
-document.getElementById("items").innerHTML = projects.map(p => `
-  <article class="item" id="p-${p.repo}">
-    <div class="tag"><span>ITEM · <b>${esc(p.short)}</b></span><span>${esc(p.kind)} · MIT</span></div>
-    <div class="body">
-      <div class="art"><img src="img/${p.art}-banner.svg" alt="${esc(p.name)} logo" width="800" height="340" loading="lazy"></div>
-      <h3>${esc(p.name)}</h3>
-      <p>${esc(p.blurb)}</p>
-      <ul class="feat">${p.feats.map(f => `<li>${esc(f)}</li>`).join("")}</ul>
-      <div class="rel" data-rel>Latest release: see GitHub</div>
-      <div data-panel></div>
-      <div class="btns">
-        <a class="btn solid" data-dl href="${gh(p)}/releases/latest">Downloads on GitHub</a>
-        <a class="btn" href="${gh(p)}">Source &amp; docs</a>
-        <a class="btn" href="${gh(p)}/releases">All releases</a>${p.extra ? `<a class="btn" href="${p.extra[0]}">${esc(p.extra[1])}</a>` : ""}
-      </div>
-    </div>
-  </article>`).join("");
-
-// Pull the newest release from the GitHub API and build a download panel per platform.
-// The static buttons above still work if this fails.
-const describe = name => {
-  const n = name.toLowerCase();
-  const arm = /arm64|aarch64/.test(n), x64 = /x86_64|amd64|x64/.test(n);
-  if (/sha256|checksum/.test(n)) return { os: "Checksums", label: "SHA-256 checksums", rank: 9 };
-  if (/\.deb$/.test(n)) return { os: "Linux", label: `Debian / Ubuntu (.deb) · ${arm ? "ARM64" : "x86-64"}`, rank: arm ? 4 : 3 };
-  if (/linux|\.appimage$|\.rpm$/.test(n)) return { os: "Linux", label: `Linux (.tar.gz) · ${arm ? "ARM64 / Raspberry Pi" : "x86-64"}`, rank: arm ? 2 : 1 };
-  if (/mac|darwin|osx|\.dmg$|\.pkg$/.test(n)) {
-    const intel = /intel/.test(n) || (x64 && !arm);
-    return { os: "macOS", label: intel ? "Intel Macs" : "Apple Silicon (M1 and newer)", rank: intel ? 2 : 1 };
-  }
-  if (/windows|win64|win32|\.exe$|\.msi$/.test(n)) return { os: "Windows", label: /\.exe$|\.msi$/.test(n) ? "Windows installer" : "Windows 10 / 11 (64-bit)", rank: 1 };
-  return { os: "Other", label: name, rank: 1 };
-};
-const ua = navigator.userAgent;
-const myOS = /iPhone|iPad|Android/.test(ua) ? "" : /Windows/.test(ua) ? "Windows" : /Mac/.test(ua) ? "macOS" : /Linux|X11/.test(ua) ? "Linux" : "";
-const mb = b => b >= 1048576 ? (b/1048576).toFixed(1) + " MB" : Math.max(1, Math.round(b/1024)) + " KB";
-projects.forEach(async p => {
-  const card = document.getElementById("p-" + p.repo);
-  try {
-    const r = await fetch(`https://api.github.com/repos/${OWNER}/${p.repo}/releases/latest`, { headers: { Accept: "application/vnd.github+json" } });
-    if (!r.ok) return;
-    const j = await r.json();
-    const assets = (j.assets || []).map(x => ({ ...x, d: describe(x.name) }));
-    if (!assets.length) return;
-    const date = new Date(j.published_at).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
-    const order = ["Windows", "macOS", "Linux", "Other"].sort((x, y) => (y === myOS) - (x === myOS));
-    const groups = order.map(os => {
-      const list = assets.filter(x => x.d.os === os).sort((x, y) => x.d.rank - y.d.rank);
-      if (!list.length) return "";
-      return `<div class="os${os === myOS ? " mine" : ""}"><h4>${os}${os === myOS ? " <em>your computer</em>" : ""}</h4>
-        ${list.map(x => `<a class="file" href="${esc(x.browser_download_url)}"><span>${esc(x.d.label)}</span><small>${esc(x.name)} · ${mb(x.size)}</small></a>`).join("")}</div>`;
-    }).join("");
-    const sums = assets.find(x => x.d.os === "Checksums");
-    card.querySelector("[data-rel]").innerHTML = `Latest release: <code>${esc(j.tag_name)}</code> · ${esc(date)}`;
-    card.querySelector("[data-panel]").innerHTML = `<div class="dl">${groups}</div>` +
-      (sums ? `<p class="sums">Verify your download against <a href="${esc(sums.browser_download_url)}">${esc(sums.name)}</a>.</p>` : "");
-    card.querySelector("[data-dl]").remove();
-  } catch (e) { /* offline or rate-limited: keep the fallback link */ }
-});
-
-
-// Community patterns: read the same index.json EaveLuxOS reads, live from GitHub.
-const PAT_URL = "https://raw.githubusercontent.com/ThinkTank4n6/eaveluxos-patterns/main/index.json";
-const pgrid = document.getElementById("pgrid"), pq = document.getElementById("pq"), ptags = document.getElementById("ptags");
-let pats = [], tagOn = "";
-const kindName = { show: "Studio show", automation: "Automation" };
-const titleCase = t => t.charAt(0).toUpperCase() + t.slice(1);
-const drawPats = () => {
-  const q = pq.value.trim().toLowerCase();
-  const list = pats.filter(x => (!tagOn || x.tags.includes(tagOn)) &&
-    (!q || [x.name, x.description, x.author, ...x.tags].join(" ").toLowerCase().includes(q)));
-  pgrid.innerHTML = list.length ? list.map(x => {
-    const cols = x.colors.length ? x.colors : ["#FFA757"];
-    const bulbs = Array.from({ length: 16 }, (_, i) => `<i style="--c:${esc(cols[i % cols.length])};--n:${i}"></i>`).join("");
-    return `<article class="pat"><div class="strip" aria-hidden="true"><div class="bulbs">${bulbs}</div></div>
-      <div class="pb">${kindName[x.kind] ? `<span class="kind">${kindName[x.kind]}</span>` : ""}<h4>${esc(x.name)}</h4>
-      ${x.description ? `<p>${esc(x.description)}</p>` : ""}${x.author ? `<p class="by">by ${esc(x.author)}</p>` : ""}
-      ${x.tags.length ? `<div class="tags">${x.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>` : ""}</div></article>`;
-  }).join("") : `<p class="pmsg">No patterns match. Try another search, or share one of your own below.</p>`;
-};
-const drawTags = () => {
-  const tags = [...new Set(pats.flatMap(x => x.tags))].sort();
-  ptags.innerHTML = [["", "All"], ...tags.map(t => [t, titleCase(t)])].map(([t, l]) =>
-    `<button class="chip" type="button" data-t="${esc(t)}" aria-pressed="${t === tagOn}">${esc(l)}</button>`).join("");
-};
-ptags.addEventListener("click", e => { const b = e.target.closest(".chip"); if (!b) return; tagOn = b.dataset.t; drawTags(); drawPats(); });
-pq.addEventListener("input", drawPats);
-(async () => {
-  try {
-    const r = await fetch(PAT_URL, { cache: "no-cache" });
-    if (!r.ok) throw 0;
-    const j = await r.json();
-    pats = (j.patterns || []).filter(x => x && x.id).map(x => ({
-      id: String(x.id), kind: x.kind || "pattern", name: String(x.name || x.id), author: String(x.author || ""),
-      description: String(x.description || ""), tags: (x.tags || []).map(t => String(t).toLowerCase()).slice(0, 8),
-      colors: (x.colors || []).filter(c => /^#[0-9a-f]{6}$/i.test(c)).slice(0, 8)
-    })).sort((a, b) => a.name.localeCompare(b.name));
-    drawTags(); drawPats();
-  } catch (e) {
-    pgrid.innerHTML = `<p class="pmsg">The pattern library couldn't be loaded right now. You can browse it on <a href="https://github.com/ThinkTank4n6/eaveluxos-patterns">GitHub</a>.</p>`;
-  }
-})();
-
-document.getElementById("yr").textContent = new Date().getFullYear();
-}
-</script>
+<script src="site.js"></script>
 </body>
 </html>

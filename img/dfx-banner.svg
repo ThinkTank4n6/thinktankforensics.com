@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" role="img" aria-label="DVR Forensic Extractor">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#061214"/><stop offset="1" stop-color="#0b2d30"/></linearGradient>
+<radialGradient id="halo" cx=".7" cy=".4" r=".5"><stop offset="0" stop-color="#2fe0c8" stop-opacity=".22"/><stop offset="1" stop-color="#2fe0c8" stop-opacity="0"/></radialGradient>
+<linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#13b5a2"/><stop offset="1" stop-color="#075a55"/></linearGradient>
+<linearGradient id="box" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#28363b"/><stop offset="1" stop-color="#151e22"/></linearGradient>
+<linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8eef2"/><stop offset=".5" stop-color="#9aa8b1"/><stop offset="1" stop-color="#d4dde3"/></linearGradient>
+<filter id="g" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="4"/></filter>
+</defs>
+<rect width="800" height="340" fill="url(#bg)"/><rect width="800" height="340" fill="url(#halo)"/>
+<text x="360" y="24" font-family="Consolas,'Courier New',monospace" font-size="13" fill="#2fe0c8" opacity=".10">44 48 41 56 FD 00 00 00 00 3C 00 00 A0 2E 5B 0B  44 48 41 56</text><text x="360" y="46" font-family="Consolas,'Courier New',monospace" font-size="13" fill="#2fe0c8" opacity=".10">44 48 41 56 FD 00 00 00 01 3C 00 00 A0 2E 5B 0B  44 48 41 56</text><text x="360" y="68" font-family="Consolas,'Courier New',monospace" font-size="13" fill="#2fe0c8" opacity=".10">44 48 41 56 FD 00 00 00 02 3C 00 00 A0 2E 5B 0B  44 48 41 56</text><text x="360" y="90" font-family="Consolas,'Courier New',monospace" font-size="13" fill="#2fe0c8" opacity=".10">44 48 41 56 FD 00 00 00 03 3C 00 00 A0 2E 5B 0B  44 48 41 56</text><text x="360" y="112" font-family="Consolas,'Courier New',monospace" font-size="13" fill="#2fe0c8" opacity=".10">44 48 41 56 FD 00 00 00 04 3C 00 00 A0 2E 5B 0B  44 48 41 56</text><text x="360" y="134" font-family="Consolas,'Courier New',monospace" font-size="13" fill="#2fe0c8" opacity=".10">44 48 41 56 FD 00 00 00 05 3C 00 00 A0 2E 5B 0B  44 48 41 56</text><text x="360" y="156" font-family="Consolas,'Courier New',monospace" font-size="13" fill="#2fe0c8" opacity=".10">44 48 41 56 FD 00 00 00 06 3C 00 00 A0 2E 5B 0B  44 48 41 56</text><text x="360" y="178" font-family="Consolas,'Courier New',monospace" font-size="13" fill="#2fe0c8" opacity=".10">44 48 41 56 FD 00 00 00 07 3C 00 00 A0 2E 5B 0B  44 48 41 56</text><text x="360" y="200" font-family="Consolas,'Courier New',monospace" font-size="13" fill="#2fe0c8" opacity=".10">44 48 41 56 FD 00 00 00 08 3C 00 00 A0 2E 5B 0B  44 48 41 56</text>
+<!-- camera -->
+<g transform="translate(640 40)">
+<rect x="-6" y="0" width="12" height="26" fill="#3a4a50"/><rect x="-20" y="-6" width="40" height="10" rx="3" fill="#4b5c63"/>
+<g transform="rotate(18 0 30)"><rect x="-58" y="24" width="92" height="40" rx="10" fill="url(#steel)"/><rect x="-66" y="28" width="14" height="32" rx="5" fill="#1b2529"/>
+<circle cx="-59" cy="44" r="9" fill="#0b1416" stroke="#2fe0c8" stroke-width="2"/><circle cx="-59" cy="44" r="3" fill="#2fe0c8"/></g>
+<circle cx="22" cy="52" r="3" fill="#ff4d5e"/><circle cx="22" cy="52" r="7" fill="#ff4d5e" opacity=".4" filter="url(#g)"/>
+</g>
+<!-- DVR recorder -->
+<g transform="translate(372 124)">
+<rect width="300" height="74" rx="8" fill="url(#box)" stroke="#33464c"/>
+<rect x="14" y="16" width="120" height="10" rx="3" fill="#0b1416"/>
+<text x="16" y="52" font-family="'Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="700" fill="#9fb3ba" letter-spacing="2">DVR · 8CH</text>
+<circle cx="196" cy="22" r="4" fill="#2fe0c8"/><circle cx="196" cy="22" r="8" fill="#2fe0c8" opacity=".35" filter="url(#g)"/><circle cx="214" cy="22" r="4" fill="#2fe0c8"/><circle cx="214" cy="22" r="8" fill="#2fe0c8" opacity=".35" filter="url(#g)"/><circle cx="232" cy="22" r="4" fill="#ffb547"/><circle cx="232" cy="22" r="8" fill="#ffb547" opacity=".35" filter="url(#g)"/><circle cx="250" cy="22" r="4" fill="#2fe0c8"/><circle cx="250" cy="22" r="8" fill="#2fe0c8" opacity=".35" filter="url(#g)"/><circle cx="268" cy="22" r="4" fill="#2fe0c8"/><circle cx="268" cy="22" r="8" fill="#2fe0c8" opacity=".35" filter="url(#g)"/>
+<rect x="180" y="44" width="8" height="18" rx="2" fill="#0b1416"/><rect x="194" y="44" width="8" height="18" rx="2" fill="#0b1416"/><rect x="208" y="44" width="8" height="18" rx="2" fill="#0b1416"/><rect x="222" y="44" width="8" height="18" rx="2" fill="#0b1416"/><rect x="236" y="44" width="8" height="18" rx="2" fill="#0b1416"/><rect x="250" y="44" width="8" height="18" rx="2" fill="#0b1416"/><rect x="264" y="44" width="8" height="18" rx="2" fill="#0b1416"/><rect x="278" y="44" width="8" height="18" rx="2" fill="#0b1416"/>
+</g>
+<!-- pulled hard drive -->
+<g transform="translate(694 150)">
+<rect width="74" height="96" rx="7" fill="url(#steel)"/><circle cx="37" cy="40" r="24" fill="#b6c2c9" stroke="#8796a0" stroke-width="2"/><circle cx="37" cy="40" r="6" fill="#7d8b94"/>
+<path d="M58 70 L40 46" stroke="#5f6d76" stroke-width="5" stroke-linecap="round"/><rect x="10" y="80" width="54" height="8" rx="2" fill="#2fe0c8" opacity=".85"/>
+</g>
+<path d="M672 186 C 684 186 686 196 694 196" stroke="#2fe0c8" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+<g transform="translate(372 236)"><rect width="74" height="50" rx="6" fill="#0f2a30" stroke="#1d4148" stroke-width="1"/>
+<path d="M8 40 L22 26 L32 34 L44 20 L66 40Z" fill="#1f4a50" opacity=".9"/>
+<text x="37" y="62" text-anchor="middle" font-family="Consolas,'Courier New',monospace" font-size="10" fill="#4f7f86">21:04:07</text></g><g transform="translate(454 236)"><rect width="74" height="50" rx="6" fill="#0f2a30" stroke="#1d4148" stroke-width="1"/>
+<path d="M8 40 L22 26 L32 34 L44 20 L66 40Z" fill="#1f4a50" opacity=".9"/>
+<text x="37" y="62" text-anchor="middle" font-family="Consolas,'Courier New',monospace" font-size="10" fill="#4f7f86">21:04:08</text></g><g transform="translate(536 236)"><rect width="74" height="50" rx="6" fill="#0f4d4a" stroke="#2fe0c8" stroke-width="2"/>
+<path d="M8 40 L22 26 L32 34 L44 20 L66 40Z" fill="#2fe0c8" opacity=".9"/>
+<text x="37" y="62" text-anchor="middle" font-family="Consolas,'Courier New',monospace" font-size="10" fill="#7ff5e3">21:04:09</text></g><g transform="translate(618 236)"><rect width="74" height="50" rx="6" fill="#0f2a30" stroke="#1d4148" stroke-width="1"/>
+<path d="M8 40 L22 26 L32 34 L44 20 L66 40Z" fill="#1f4a50" opacity=".9"/>
+<text x="37" y="62" text-anchor="middle" font-family="Consolas,'Courier New',monospace" font-size="10" fill="#4f7f86">21:04:10</text></g><g transform="translate(700 236)"><rect width="74" height="50" rx="6" fill="#0f2a30" stroke="#1d4148" stroke-width="1"/>
+<path d="M8 40 L22 26 L32 34 L44 20 L66 40Z" fill="#1f4a50" opacity=".9"/>
+<text x="37" y="62" text-anchor="middle" font-family="Consolas,'Courier New',monospace" font-size="10" fill="#4f7f86">21:04:11</text></g>
+<path d="M372 300 H772" stroke="#1d4148" stroke-width="2"/><path d="M536 300 H608" stroke="#2fe0c8" stroke-width="4" stroke-linecap="round"/>
+<!-- icon + wordmark -->
+<g transform="translate(46 44)">
+<rect width="128" height="128" rx="30" fill="url(#tile)"/><rect x="1" y="1" width="126" height="126" rx="29" fill="none" stroke="#7ff5e3" stroke-opacity=".45" stroke-width="2"/>
+<g transform="rotate(14 64 52)"><rect x="22" y="36" width="70" height="32" rx="9" fill="none" stroke="#fff" stroke-width="7"/><circle cx="34" cy="52" r="6" fill="#fff"/></g>
+<path d="M70 72 L70 82 L48 82" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<rect x="24" y="88" width="80" height="22" rx="5" fill="#053f3b" stroke="#fff" stroke-width="5"/><path d="M58 93 L72 99 L58 105Z" fill="#fff"/>
+</g>
+<text x="48" y="224" font-family="'Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif" font-size="38" font-weight="700" fill="#fff" letter-spacing="-.5">DVR Forensic</text>
+<text x="48" y="264" font-family="'Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif" font-size="38" font-weight="700" fill="#2fe0c8" letter-spacing="-.5">Extractor</text>
+<text x="50" y="294" font-family="'Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif" font-size="16" fill="#9fc4c4">Carve surveillance video from DVR and NVR drives</text>
+</svg>
