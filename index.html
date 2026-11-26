@@ -32,15 +32,15 @@
   --cell:light-dark(#e6e8ec,#23262a);--hit:light-dark(#1557d6,#3d8bff)}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
-html{scroll-padding-top:72px;scroll-behavior:smooth}
+html{scroll-padding-top:96px;scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,sans-serif;overflow-x:clip}
 a{color:var(--red)}
 .wrap{max-width:1240px;margin:0 auto}
 .band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
 header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:16px;padding:12px max(5vw,16px);flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--ink);text-decoration:none;font-size:17px}
-.brand img{width:34px;height:34px;border-radius:7px}
+.top .wrap{display:flex;align-items:center;gap:16px;padding:16px max(5vw,16px);flex-wrap:wrap;min-height:84px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--ink);text-decoration:none;font-size:19px}
+.brand img{width:42px;height:42px;border-radius:8px}
 nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
 nav a{color:var(--ink);text-decoration:none;padding:10px 12px;border-radius:6px;font-size:15px}
 nav a:hover,nav a:focus-visible{background:var(--panel)}
@@ -93,6 +93,14 @@ ul.feat{margin:0;padding-left:18px}ul.feat li{margin:4px 0}
 pre{overflow-x:auto;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:14px;font:13px/1.5 "IBM Plex Mono",monospace;margin:20px 0 0}
 .about .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
 .about p{color:var(--mute);margin:0 0 14px}
+.coffee{margin-top:18px;border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--panel);display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.coffee p{margin:0;color:var(--ink)}.coffee small{color:var(--mute);font-size:13px}
+.btn svg,nav a svg{flex:none}.lead{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:6px 14px 6px 11px;border-radius:99px;border:1.5px solid var(--red);color:var(--red);font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}
+.pill svg{width:18px;height:18px}
+.tip{display:flex;flex-direction:column;align-items:center;gap:4px}.tip small{font-size:12px;color:var(--mute);white-space:nowrap}
+.pill:hover{background:var(--red);color:#fff}.pill:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+@media(max-width:420px){.pill span,.tip small{display:none}.pill{padding:6px 9px}}
 .note{font-size:14px;border-left:3px solid var(--red);padding:6px 0 6px 14px;color:var(--mute)}
 footer{border-top:1px solid var(--line);font-size:14px;color:var(--mute)}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -131,10 +139,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <body>
 
 <header class="top"><div class="wrap">
+  <div class="lead">
   <a class="brand" href="#top" aria-label="ThinkTank Forensics home">
-    <img src="emblem.png" alt="" width="34" height="34">
+    <img src="emblem.png" alt="" width="42" height="42">
     ThinkTank Forensics
   </a>
+  <div class="tip"><a class="pill" href="https://venmo.com/u/Christopher-Tankelewicz" rel="noopener" aria-label="Buy me a coffee on Venmo"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3c0 1.5 1 1.5 1 3M12 3c0 1.5 1 1.5 1 3"/></svg><span>Buy me a coffee</span></a><small>Optional · never unlocks features or support</small></div>
+  </div>
   <nav aria-label="Main">
     <a href="#projects">Projects</a>
     <a href="#patterns">Patterns</a>
@@ -210,13 +221,18 @@ shasum -a 256 FME-v2026.11.271.zip</pre>
   <div>
     <p class="note">These are independent personal projects, written on my own time and equipment. They are not products of, endorsed by, or affiliated with any government agency or employer.</p>
     <p>Bug reports and feature requests are welcome as GitHub issues on each project.</p>
+    <div class="coffee">
+      <p><b>Find these tools useful?</b> They're free and always will be. If one saved you time, you're welcome to buy me a coffee.</p>
+      <a class="btn solid" href="https://venmo.com/u/Christopher-Tankelewicz" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3c0 1.5 1 1.5 1 3M12 3c0 1.5 1 1.5 1 3"/></svg> Buy me a coffee</a>
+      <small>Via Venmo: <b>@Christopher-Tankelewicz</b>. Entirely optional; it never unlocks features or support.</small>
+    </div>
   </div>
 </div></section>
 </main>
 
 <footer class="band"><div class="wrap">
   <span>© <span id="yr">2026</span> Christopher A. Tankelewicz (ThinkTank4n6)</span>
-  <span>Hosted on GitHub Pages · <a href="https://github.com/ThinkTank4n6">github.com/ThinkTank4n6</a></span>
+  <span><a href="https://venmo.com/u/Christopher-Tankelewicz" rel="noopener">Buy me a coffee</a> · Hosted on GitHub Pages · <a href="https://github.com/ThinkTank4n6">github.com/ThinkTank4n6</a></span>
 </div></footer>
 
 <script>
