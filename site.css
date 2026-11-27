@@ -150,3 +150,13 @@ nav{align-items:center}
 @media(max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:700px){.dd{position:static}.ddm{left:max(5vw,16px);right:max(5vw,16px);width:auto}}
 @media(prefers-reduced-motion:reduce){.chev{transition:none}}
+
+
+/* video tutorials (YouTube) */
+.yt{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:24px;margin-top:24px;align-items:start}
+.yt .frame{aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.yt iframe{display:block;width:100%;height:100%;border:0}
+.ytside{border:1px solid var(--line);border-radius:12px;padding:20px;background:var(--panel);display:flex;flex-direction:column;gap:10px}
+.ytside img{width:72px;height:72px;border-radius:18px}.ytside h3{margin:0}.ytside p{margin:0;color:var(--mute)}
+.ytside .btns{margin-top:6px}.ytbtn svg{flex:none}
+@media(max-width:860px){.yt{grid-template-columns:minmax(0,1fr)}}

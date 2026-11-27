@@ -14,7 +14,7 @@ const projects = [
   { repo: "eaveluxos", name: "EaveLuxOS", short: "EaveLuxOS", kind: "Home",
     blurb: "The intelligent lighting control platform for Trimlight Edge permanent lights. Runs on an always-on PC at home and replaces the stock app.",
     feats: ["True sunrise and sunset scheduling", "Correct daylight saving time handling", "Uses the official Trimlight API", "Self-hosted: your schedule stays on your network"],
-    art: "eaveluxos", extra: ["#patterns", "Community patterns"], tagline: "Smarter scheduling for Trimlight Edge permanent lights" }
+    art: "eaveluxos", extra: [["#tutorials", "Video tutorials"], ["https://www.youtube.com/channel/UCGIO8UPksE7Y5YmotKnUUUQ", "YouTube channel"], ["#patterns", "Community patterns"]], tagline: "Smarter scheduling for Trimlight Edge permanent lights" }
 ];
 
 
@@ -24,6 +24,7 @@ const gh = p => `https://github.com/${OWNER}/${p.repo}`;
 
 // Extra menu entries that aren't downloadable projects. Add new ones here.
 const links = [
+  { kind: "Home", name: "Video Tutorials", href: "home.html#tutorials", icon: "tutorials", tagline: "Step-by-step walkthroughs on the EaveLuxOS YouTube channel" },
   { kind: "Home", name: "Community Patterns", href: "home.html#patterns", icon: "patterns", tagline: "Browse and share EaveLuxOS lighting patterns" }
 ];
 const pages = { DFIR: "dfir.html", Home: "home.html" };
@@ -64,7 +65,7 @@ if (itemsEl) itemsEl.innerHTML = shown.map(p => `
       <div class="btns">
         <a class="btn solid" data-dl href="${gh(p)}/releases/latest">Downloads on GitHub</a>
         <a class="btn" href="${gh(p)}">Source &amp; docs</a>
-        <a class="btn" href="${gh(p)}/releases">All releases</a>${p.extra ? `<a class="btn" href="${p.extra[0]}">${esc(p.extra[1])}</a>` : ""}
+        <a class="btn" href="${gh(p)}/releases">All releases</a>${(p.extra || []).map(([h, t]) => `<a class="btn" href="${h}">${esc(t)}</a>`).join("")}
       </div>
     </div>
   </article>`).join("");
